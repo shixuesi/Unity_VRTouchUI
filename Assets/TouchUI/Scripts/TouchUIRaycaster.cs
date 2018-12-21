@@ -31,15 +31,6 @@ namespace TouchUI
             }
         }
 
-        public override Camera eventCamera
-        {
-            get
-            {
-                return canvas.worldCamera;
-            }
-        }
-
-
 
         /// <summary>
         /// For the given ray, find graphics on this canvas which it intersects and are not blocked by other
