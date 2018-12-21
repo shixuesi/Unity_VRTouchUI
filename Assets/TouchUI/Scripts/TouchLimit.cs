@@ -42,13 +42,19 @@ namespace TouchUI
             return false;
         }
 
-        void OnValidate()//在Inspector中修改参数值，就会自动调用这个方法  
+        void OnValidate()//在编辑中辅助修改TouchLimit物体的位置
         {
-            Canvas can = GetComponentInParent<Canvas>();
+            //默认只计算Canvas的Scale
+            Canvas [] canvas = GetComponentsInParent<Canvas>();
 
-            if (can)
+            if (canvas != null && canvas.Length > 0)
             {
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, clickDis / can.transform.localScale.z);
+                float scale = 1;
+                foreach (var item in canvas)
+                {
+                    scale *= item.transform.localScale.z;
+                }
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, clickDis / scale);
             }
         }
         
